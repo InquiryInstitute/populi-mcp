@@ -5,6 +5,7 @@ import * as academicTerms from "./tools/academic-terms.js";
 import * as people from "./tools/people.js";
 import * as courseOfferings from "./tools/course-offerings.js";
 import * as enrollments from "./tools/enrollments.js";
+import * as githubClassroom from "./tools/github-classroom.js";
 
 const server = new McpServer(
   { name: "populi-mcp", version: "0.1.0" },
@@ -63,6 +64,63 @@ server.registerTool(
     inputSchema: enrollments.listEnrollmentsSchema,
   },
   enrollments.listEnrollments
+);
+
+// GitHub Classroom linking tools
+server.registerTool(
+  "populi_export_roster_for_classroom",
+  {
+    description:
+      "Export Populi course roster in CSV/JSON format for GitHub Classroom manual roster import. Use visible_student_id, person_id, or display_name as identifier.",
+    inputSchema: githubClassroom.exportRosterForClassroomSchema,
+  },
+  githubClassroom.exportRosterForClassroom
+);
+
+server.registerTool(
+  "classroom_list_classrooms",
+  {
+    description: "List GitHub Classroom classrooms. Requires GITHUB_TOKEN.",
+    inputSchema: githubClassroom.listClassroomsSchema,
+  },
+  githubClassroom.listClassrooms
+);
+
+server.registerTool(
+  "classroom_list_assignments",
+  {
+    description: "List assignments for a GitHub Classroom. Requires GITHUB_TOKEN.",
+    inputSchema: githubClassroom.listAssignmentsSchema,
+  },
+  githubClassroom.listAssignments
+);
+
+server.registerTool(
+  "classroom_get_assignment",
+  {
+    description: "Get a GitHub Classroom assignment by ID. Requires GITHUB_TOKEN.",
+    inputSchema: githubClassroom.getAssignmentSchema,
+  },
+  githubClassroom.getAssignment
+);
+
+server.registerTool(
+  "classroom_list_accepted_assignments",
+  {
+    description: "List accepted assignments (student repos) for a GitHub Classroom assignment. Requires GITHUB_TOKEN.",
+    inputSchema: githubClassroom.listAcceptedAssignmentsSchema,
+  },
+  githubClassroom.listAcceptedAssignments
+);
+
+server.registerTool(
+  "classroom_get_grades",
+  {
+    description:
+      "Get grades for a GitHub Classroom assignment. Returns roster_identifier and github_username for mapping to Populi. Requires GITHUB_TOKEN.",
+    inputSchema: githubClassroom.getAssignmentGradesSchema,
+  },
+  githubClassroom.getAssignmentGrades
 );
 
 async function main() {

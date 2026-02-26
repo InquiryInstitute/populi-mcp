@@ -5,7 +5,8 @@
       "args": ["dist/index.js"],
       "env": {
         "POPULI_BASE_URL": "https://yourschool.populiweb.com",
-        "POPULI_API_KEY": "sk_your_api_key"
+        "POPULI_API_KEY": "sk_your_api_key",
+        "GITHUB_TOKEN": "ghp_your_github_token"
       }
     }
   }

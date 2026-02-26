@@ -4,9 +4,10 @@ MCP (Model Context Protocol) server for the [Populi LMS](https://www.populiweb.c
 
 ## Setup
 
-1. **Environment variables** (required):
-   - `POPULI_BASE_URL` — Your Populi instance URL (e.g. `https://yourschool.populiweb.com`)
-   - `POPULI_API_KEY` — API key from Populi (Account & Settings → API → Keys)
+1. **Environment variables**:
+   - `POPULI_BASE_URL` — Your Populi instance URL (e.g. `https://yourschool.populiweb.com`) — required for Populi tools
+   - `POPULI_API_KEY` — API key from Populi (Account & Settings → API → Keys) — required for Populi tools
+   - `GITHUB_TOKEN` — GitHub token with `admin:org` scope — required for Classroom tools
 
 2. **Install and build**:
    ```bash
@@ -58,6 +59,8 @@ Or use `npx`:
 
 ## Tools
 
+### Populi
+
 | Tool | Description |
 |------|-------------|
 | `populi_list_academic_terms` | List academic terms |
@@ -66,6 +69,19 @@ Or use `npx`:
 | `populi_get_course_offering` | Get a course offering by ID |
 | `populi_list_course_offerings` | List course offerings for an academic term |
 | `populi_list_enrollments` | List enrollments (roster) for a course in a term |
+
+### GitHub Classroom linking
+
+| Tool | Description |
+|------|-------------|
+| `populi_export_roster_for_classroom` | Export Populi roster as CSV/JSON for GitHub Classroom manual roster import |
+| `classroom_list_classrooms` | List GitHub Classroom classrooms |
+| `classroom_list_assignments` | List assignments for a classroom |
+| `classroom_get_assignment` | Get assignment details (invite link, etc.) |
+| `classroom_list_accepted_assignments` | List accepted assignments (student repos) |
+| `classroom_get_grades` | Get grades with roster_identifier ↔ github_username mapping |
+
+**Classroom tools** require `GITHUB_TOKEN` (token with `admin:org` scope). Use `roster_identifier` from grades to match Populi `visible_student_id` when syncing grades.
 
 ## Populi API
 
