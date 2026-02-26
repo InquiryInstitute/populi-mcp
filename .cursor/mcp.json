@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "populi": {
+      "command": "node",
+      "args": ["dist/index.js"],
+      "cwd": "/Users/danielmcshan/GitHub/populi-mcp",
+      "env": {
+        "POPULI_BASE_URL": "https://yourschool.populiweb.com",
+        "POPULI_API_KEY": "sk_your_api_key"
+      }
+    }
+  }
+}
